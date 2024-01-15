@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+
 import { searchFood } from '../Api';
 
 function SearchBar({onSearchTermChange}) {
@@ -8,21 +8,47 @@ function SearchBar({onSearchTermChange}) {
   const handleSearch = async () => {
     try {
       const searchData = await searchFood(searchTerm)
-      console.log(searchData)
-     
-      await axios.post('http://localhost:3005/foods', searchData);
-
+      
       onSearchTermChange(searchData)
+     
+      
      
     } catch (error) {
       console.error('Error:', error);
     }
+
+  };
+
+  //inline css for convenience as this is a small project
+  const searchBarStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center', 
+    margin: '20px auto', 
+  };
+
+  const inputStyle = {
+    marginRight: '10px',
+    padding: '8px', 
+    borderRadius: '4px',
+    border: '1px solid #ccc',
+    width: '300px', 
+    boxSizing: 'border-box',
+  };
+  const buttonStyle = {
+    padding: '10px', 
+    borderRadius: '4px',
+    border: 'none',
+    backgroundColor: '#007bff', 
+    color: 'white',
+    cursor: 'pointer',
   };
 
   return (
-    <div>
+    <div style={searchBarStyle}>
       <input
         type="text"
+        style={inputStyle}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={(e) => {
@@ -31,7 +57,8 @@ function SearchBar({onSearchTermChange}) {
           }
         }}
       />
-      <button onClick={handleSearch}>Search</button>
+      
+      <button style={buttonStyle} onClick={handleSearch}>Search</button>
     </div>
   );
 }

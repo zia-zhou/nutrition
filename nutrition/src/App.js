@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import SearchBar from './components/SearchBar';
-import FoodList from './components/foodList';
+import FoodDisplay from './components/FoodDisplay';
 
 function App() {
   
@@ -10,11 +10,18 @@ function App() {
   const handleSearchTermChange = (newSearchTerm) => {
     setSearchTerm(newSearchTerm);
   };
+ 
+
+
+
   return (
     <div>
-      <h1>Food App</h1>
-      <SearchBar onSearchTermChange={handleSearchTermChange}/>
-      <FoodList searchTerm={searchTerm}/>
+       <h1 style={{ textAlign: 'center' }}>Nutrition Statistics</h1>
+     <SearchBar onSearchTermChange={handleSearchTermChange}/>
+    
+
+    
+      <FoodDisplay searchTerm={searchTerm}/>
     </div>
   );
 }

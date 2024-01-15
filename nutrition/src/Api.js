@@ -10,7 +10,7 @@ export const searchFood = async (term) => {
             query:term,
         }
     })
-   //console.log( response.data.items[0])
+
     return response.data.items[0]
 }
 
